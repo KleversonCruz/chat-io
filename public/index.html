@@ -11,55 +11,62 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./styles.css" />
 
     <title>Chat</title>
   </head>
 
   <body class="col-lg-6 my-3 mx-auto">
-    <header>
-      <h1 class="text-center display-4 mb-4">Lista de salas</h1>
-    </header>
+    <div class="spinner-grow text-primary" role="status" id="spinner">
+      <span class="visually-hidden">Loading...</span>
+    </div>
 
-    <main class="w-75 mx-auto">
-      <div id="roomList" class="list-group mb-4"></div>
-    </main>
+    <div id="content" class="hidden">
+      <header>
+        <h1 class="text-center display-4 mb-4">Lista de salas</h1>
+      </header>
 
-    <div
-      class="modal fade"
-      id="modalJoinRoom"
-      tabindex="-1"
-      aria-labelledby="modalJoinRoomLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalJoinRoomLabel"></h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form id="formJoinRoom">
-              <div class="mb-3">
-                <input type="text" id="inputRoomName" hidden />
-                <label for="nickname" class="form-label">Apelido</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputNickname"
-                  placeholder="Digite seu apelido"
-                  minlength="3"
-                  required
-                />
-              </div>
-              <button class="btn btn-primary w-100" type="submit">
-                Entrar
-              </button>
-            </form>
+      <main class="w-75 mx-auto">
+        <div id="roomList" class="list-group mb-4"></div>
+      </main>
+
+      <div
+        class="modal fade"
+        id="modalJoinRoom"
+        tabindex="-1"
+        aria-labelledby="modalJoinRoomLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalJoinRoomLabel"></h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form id="formJoinRoom">
+                <div class="mb-3">
+                  <input type="text" id="inputRoomName" hidden />
+                  <label for="nickname" class="form-label">Apelido</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputNickname"
+                    placeholder="Digite seu apelido"
+                    minlength="3"
+                    required
+                  />
+                </div>
+                <button class="btn btn-primary w-100" type="submit">
+                  Entrar
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

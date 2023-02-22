@@ -3,6 +3,7 @@ import {
   addUserMessageInLogs,
   updateConnectedUsers,
   throwError,
+  loadPageContent,
 } from './sala.js';
 
 const socket = io();
@@ -20,16 +21,20 @@ socket.on('roomDoesntExist', throwError);
 socket.on('userAlreadyJoined', throwError);
 socket.on('roomReachedMaxCapacity', throwError);
 
-socket.on('disconnect', () =>
-  throwError('Conexão com o servidor foi perdida.')
+socket.on('reconnect', () =>
+  addServerMessageInLogs('Conexão com o servidor recuperada.')
 );
+
+socket.on('reconnect_error', () => {
+  addServerMessageInLogs('Conexão com o servidor foi perdida.');
+});
 
 function emitSubmitMessage(message) {
   socket.emit('submitMessage', message);
 }
 
 function emitJoinChat({ roomName, userName }) {
-  socket.emit('joinChat', { roomName, userName });
+  socket.emit('joinChat', { roomName, userName }, loadPageContent);
 }
 
 export { emitSubmitMessage, emitJoinChat };

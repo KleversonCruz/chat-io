@@ -7,11 +7,17 @@ import {
   removeConnection,
 } from './utils/roomConnections.js';
 
-const io = new Server();
+const io = new Server({
+  reconnection: true,
+  reconnectionAttempts: 5,
+  reconnectionDelay: 1000
+});
+
 
 io.on('connection', (socket) => {
-  socket.on('joinChat', ({ roomName, userName }) => {
+  socket.on('joinChat', ({ roomName, userName }, loadPageContent) => {
     joinChat(socket, roomName, userName);
+    loadPageContent();
   });
 });
 
@@ -41,7 +47,7 @@ function joinChat(socket, roomName, userName) {
   addConnection({ userName, roomName });
   const usersInRoom = getConnections(roomName);
 
-  sendWelcomeMessage(socket);
+  sendWelcomeMessage(socket, roomName);
   broadcastUserConnectedMessage(roomName, userName);
   broadcastUsersInRoom(roomName, usersInRoom);
   listenForMessages(socket, roomName, userName);

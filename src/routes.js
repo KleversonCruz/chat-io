@@ -11,7 +11,6 @@ router.get('/room', (req, res) => {
     const connections = getConnections(room.name);
     return { ...room, connectedUser: connections.length };
   });
-
   res.json(roomsWithConnections);
 });
 

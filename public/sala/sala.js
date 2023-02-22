@@ -1,3 +1,4 @@
+import { hideContent, showContent } from '../utils.js';
 import { emitSubmitMessage, emitJoinChat } from './salaSocket.js';
 
 joinChat();
@@ -8,6 +9,7 @@ const messageLogs = document.getElementById('messageLogs');
 const buttonLeaveChat = document.getElementById('buttonLeaveChat');
 
 function joinChat() {
+  hideContent();
   const params = new URLSearchParams(window.location.search);
   const roomName = params.get('nome');
   const userName = sessionStorage.getItem('nickName');
@@ -18,6 +20,10 @@ function joinChat() {
 
   loadPageDetails(roomName);
   emitJoinChat({ roomName, userName });
+}
+
+function loadPageContent() {
+  showContent();
 }
 
 function loadPageDetails(roomName) {
@@ -78,4 +84,5 @@ export {
   addServerMessageInLogs,
   addUserMessageInLogs,
   throwError,
+  loadPageContent,
 };
