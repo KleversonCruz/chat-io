@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Sala 1",
+    "maxCapacity": 5
+  },
+  {
+    "name": "Sala 2",
+    "maxCapacity": 5
+  }
+]
